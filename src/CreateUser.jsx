@@ -46,7 +46,7 @@ function CreateUser() {
     },
 
     onSubmit: async(values) => {
-      let users = await axios.post(`${env.api}/users`,values)
+      let users = await axios.post(`${env.api}/user`,values)
 
       alert("New user created")
       navigate("/portal/users")

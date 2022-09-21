@@ -13,26 +13,18 @@ function Users() {
 
   let loadData = async () => {
     setLoading(true);
-    let users = await axios.get(
-      `${env.api}/users`
-    );
+    let users = await axios.get(`${env.api}/users?limit=100&offset=0`);        //users
     setUsers(users.data);
     setLoading(false);
   };
 
   let userDelete = async (id) => {
-    try{
-      let del= await axios.delete(`${env.api}/users/${id}`);
-      console.log(del)
+    try {
+      let del = await axios.delete(`${env.api}/user/${id}`);
+      console.log(del);
       loadData();
-
-      
-    }
-   catch(errors){
-
-   }
-
-  }
+    } catch (errors) {}
+  };
 
   return (
     <div className="container-fluid">
@@ -54,10 +46,11 @@ function Users() {
         </div>
       </div>
       {isLoading ? (
-        <div className="mx-auto" style={{width: "200px"}}>
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div></div>
+        <div className="mx-auto" style={{ width: "200px" }}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
       ) : (
         <div className="card-body">
           <div className="table-responsive">
@@ -94,8 +87,7 @@ function Users() {
               <tbody>
                 {users.map((user, index) => {
                   return (
-                    
-                    <tr key={index}> 
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{user.name}</td>
                       <td>{user.position}</td>
@@ -118,10 +110,12 @@ function Users() {
                           Edit
                         </Link>
 
-                        <button onClick={ () => {
-                          userDelete(user.id)
-                        }}
-                        className="btn btn-sm btn-danger mr-2">
+                        <button
+                          onClick={() => {
+                            userDelete(user.id);
+                          }}
+                          className="btn btn-sm btn-danger mr-2"
+                        >
                           Delete
                         </button>
                       </td>

@@ -51,7 +51,7 @@ function UserEdit() {
     },
 
     onSubmit: async (values) => {
-      let data = await axios.put(`${env.api}/users/${params.id}`, values)
+      let data = await axios.put(`${env.api}/user/${params.id}`, values)
       alert("User details updated")
       navigate("/portal/users")
     }
@@ -64,7 +64,7 @@ function UserEdit() {
     let loadUser = async() => {
       try{
 
-        let user = await axios.get(`${env.api}/users/${params.id}`)
+        let user = await axios.get(`${env.api}/user/${params.id}`)
         
         formik.setValues({
           name: user.data.name,
