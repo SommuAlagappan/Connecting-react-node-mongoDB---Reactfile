@@ -22,6 +22,7 @@ function Users() {
     try {
       let del = await axios.delete(`${env.api}/user/${id}`);
       console.log(del);
+      alert("User deleted");
       loadData();
     } catch (errors) {}
   };
@@ -97,13 +98,13 @@ function Users() {
                       <td>{user.salary}</td>
                       <td>
                         <Link
-                          to={`/portal/users/${user.id}`}
+                          to={`/portal/users/${user._id}`}
                           className="btn btn-sm btn-primary mr-2"
                         >
                           View
                         </Link>
                         <Link
-                          to={`/portal/user/edit/${user.id}`}
+                          to={`/portal/user/edit/${user._id}`}
                           className="btn btn-sm btn-warning mr-2"
                         >
                           {" "}
@@ -112,7 +113,7 @@ function Users() {
 
                         <button
                           onClick={() => {
-                            userDelete(user.id);
+                            userDelete(user._id);
                           }}
                           className="btn btn-sm btn-danger mr-2"
                         >
