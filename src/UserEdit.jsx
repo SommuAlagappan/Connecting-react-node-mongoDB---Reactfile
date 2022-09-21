@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams,  } from "react-router-dom"
 import { useFormik } from 'formik'
 import axios from 'axios'
+import { env } from './config'
 
 function UserEdit() {
 
@@ -50,7 +51,7 @@ function UserEdit() {
     },
 
     onSubmit: async (values) => {
-      let data = await axios.put(`https://6305f395dde73c0f844f7176.mockapi.io/users/${params.id}`, values)
+      let data = await axios.put(`${env.api}/users/${params.id}`, values)
       alert("User details updated")
       navigate("/portal/users")
     }
@@ -63,7 +64,7 @@ function UserEdit() {
     let loadUser = async() => {
       try{
 
-        let user = await axios.get(`https://6305f395dde73c0f844f7176.mockapi.io/users/${params.id}`)
+        let user = await axios.get(`${env.api}/users/${params.id}`)
         
         formik.setValues({
           name: user.data.name,

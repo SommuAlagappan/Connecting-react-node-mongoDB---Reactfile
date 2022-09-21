@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { env } from "./config";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -13,7 +14,7 @@ function Users() {
   let loadData = async () => {
     setLoading(true);
     let users = await axios.get(
-      "https://6305f395dde73c0f844f7176.mockapi.io/users"
+      `${env.api}/users`
     );
     setUsers(users.data);
     setLoading(false);
@@ -21,7 +22,7 @@ function Users() {
 
   let userDelete = async (id) => {
     try{
-      let del= await axios.delete(`https://6305f395dde73c0f844f7176.mockapi.io/users/${id}`);
+      let del= await axios.delete(`${env.api}/users/${id}`);
       console.log(del)
       loadData();
 
