@@ -1,5 +1,5 @@
 export const env = {
-    api: "http://localhost:3003"
+    api: "https://connecting-react-node-mongodb.herokuapp.com"
 }
 
 //use pannumbothu - ${env.api}
